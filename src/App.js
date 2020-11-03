@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { TextField, Box } from '@material-ui/core';
+import data from './emoji.json';
 
 function App() {
+	const [searchTerm, setSearchTerm] = React.useState("");
+
+	const handleChange = event => {
+		setSearchTerm(event.target.value.toLowerCase());
+	};
+
+	
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+		<Box display="flex">	
+			<Box m="auto"	>
+	      <header className="App-header">
+					<TextField id="peruse" placeholder="Search" value={searchTerm} onChange={handleChange} />
+	      </header>
+			</Box></Box>
+			<Box display="flex" m={3}>
+			<Box m="auto">
+				{ data.filter((p) => {
+						let emojiName = p.name.toLowerCase();
+						return emojiName.includes(searchTerm) && searchTerm !== "";
+					})
+					.map((p) => {
+						console.log(p);
+						return (
+						<span>{ p.char }</span>
+						);
+						})
+				}
+			</Box>
+		</Box>
     </div>
   );
 }
