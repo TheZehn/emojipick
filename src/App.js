@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Box } from '@material-ui/core';
+import { Tooltip, TextField, Box } from '@material-ui/core';
 import data from './emoji.json';
 
 function App() {
@@ -8,8 +8,6 @@ function App() {
 	const handleChange = event => {
 		setSearchTerm(event.target.value.toLowerCase());
 	};
-
-	
 
   return (
     <div className="App">
@@ -28,14 +26,26 @@ function App() {
 					.map((p) => {
 						console.log(p);
 						return (
-						<span>{ p.char }</span>
-						);
+							<Emoji em={p} />
+							);
 						})
 				}
 			</Box>
 		</Box>
     </div>
   );
+}
+
+
+function Emoji(props){
+
+	let em = props.em;
+
+	return (
+	 <Tooltip title={em.name} >
+			<span> {em.char} </span>
+	</Tooltip>
+	)
 }
 
 export default App;
