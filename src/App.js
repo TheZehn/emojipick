@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, TextField, Box } from '@material-ui/core';
+import { Typography, Tooltip, TextField, Box } from '@material-ui/core';
 import data from './emoji.json';
 
 function App() {
@@ -24,7 +24,6 @@ function App() {
 						return emojiName.includes(searchTerm) && searchTerm !== "";
 					})
 					.map((p) => {
-						console.log(p);
 						return (
 							<Emoji em={p} />
 							);
@@ -43,7 +42,7 @@ function Emoji(props){
 
 	return (
 	 <Tooltip title={em.name} >
-			<span> {em.char} </span>
+			<Typography style={{display: 'inline-block'}} variant='h4' >{em.char} </Typography>
 	</Tooltip>
 	)
 }
