@@ -21,11 +21,12 @@ function App() {
 			<Box m="auto">
 				{ data.filter((p) => {
 						let emojiName = p.name.toLowerCase();
-						return emojiName.includes(searchTerm) && searchTerm !== "";
+						let emojiCat = p.category.toLowerCase();
+						return (emojiCat.includes(searchTerm) || emojiName.includes(searchTerm)) && searchTerm !== "";
 					})
 					.map((p) => {
 						return (
-							<Emoji em={p} />
+							<Emoji key={p.codes} em={p} />
 							);
 						})
 				}
